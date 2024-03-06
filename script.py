@@ -1,12 +1,8 @@
 import requests
 
-try:
-    response = requests.get("http://127.0.0.1:8000/api/items")
-    response.raise_for_status()
-    print(response.json()[1]["name"])
-except requests.exceptions.HTTPError as http_err:
-    print(f"HTTP error occured: {http_err}")
-except Exception as err:
-    print(err)
-else:
-    print(response.status_code)
+query_params = {"offset": 2, "limit": 2, "max_price": 40}
+response = requests.get(
+    "http://127.0.0.1:8000/api/items",
+    params=query_params,
+)
+print(response.json())
