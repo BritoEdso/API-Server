@@ -1,8 +1,9 @@
 import requests
 
-query_params = {"offset": 2, "limit": 2, "max_price": 40}
+def log_url(response, *args, **kwargs):
+    print(f"Requested URL: {response.url}")
+
 response = requests.get(
     "http://127.0.0.1:8000/api/items",
-    params=query_params,
+    hooks={"response": log_url},
 )
-print(response.json())
