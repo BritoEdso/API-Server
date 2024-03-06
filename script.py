@@ -1,8 +1,9 @@
 import requests
 
 try:
-    response = requests.get("http://127.0.0.1:8000/api/cock")
+    response = requests.get("http://127.0.0.1:8000/api/items")
     response.raise_for_status()
+    print(response.json()[1]["name"])
 except requests.exceptions.HTTPError as http_err:
     print(f"HTTP error occured: {http_err}")
 except Exception as err:
